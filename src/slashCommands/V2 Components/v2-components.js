@@ -22,6 +22,7 @@ const {
 const config = require('../../config/config.json');
 
 module.exports = {
+  skip: true,
   data: new SlashCommandBuilder()
     .setName('v2-components')
     .setDescription('Sends a message demonstrating all Components V2'),
