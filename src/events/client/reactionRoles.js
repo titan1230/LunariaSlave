@@ -33,19 +33,19 @@ module.exports = {
 
             switch (id) {
                 case 'male_role':
-                    const role = interaction.guild.roles.cache.find(role => roleIDs.id === roleIDs.male_role);
+                    const maleRole = interaction.guild.roles.cache.find(role => role.id === roleIDs.male_role);
 
-                    if (!role) {
+                    if (!maleRole) {
                         return interaction.reply({ content: 'Role not found on the server.', flags: MessageFlags.Ephemeral });
                     }
 
                     if (interaction.member.roles.cache.get(roleIDs.male_role)) {
-                        await interaction.member.roles.remove(role);
-                        return interaction.reply({ content: `Removed the <@&${role.id}> role.`, flags: MessageFlags.Ephemeral });
+                        await interaction.member.roles.remove(maleRole);
+                        return interaction.reply({ content: `Removed the <@&${maleRole.id}> role.`, flags: MessageFlags.Ephemeral });
                     }
 
-                    await interaction.member.roles.add(role);
-                    return interaction.reply({ content: `Added the <@&${role.id}> role.`, flags: MessageFlags.Ephemeral });
+                    await interaction.member.roles.add(maleRole);
+                    return interaction.reply({ content: `Added the <@&${maleRole.id}> role.`, flags: MessageFlags.Ephemeral });
 
                 case 'female_role':
                     const femaleRole = interaction.guild.roles.cache.find(role => role.id === roleIDs.female_role);
