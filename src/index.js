@@ -55,6 +55,8 @@ client.login(process.env.TOKEN)
         process.exit();
     });
 
+client.loggingChannel = client.guilds.fetch(process.env.GUILD_ID).then(g => g.channels.fetch(process.env.LOGGING_CHANNEL_ID).then(c => c)).catch(console.error);
+
 // Global error handling
 client.on('error', (error) => {
     console.error("[CLIENT ERROR]", error);
