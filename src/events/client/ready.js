@@ -3,7 +3,11 @@ const { ActivityType } = require('discord.js');
 module.exports = {
     name: 'clientReady',
     once: true,
-    execute(client) {
+    /**
+     * 
+     * @param {import('discord.js').Client} client 
+     */
+    async execute(client) {
         const tag = client.user.tag;
         const boxTitle = `BOT READY`;
         const boxMessage = `Logged in as ${tag}`;
@@ -21,5 +25,31 @@ module.exports = {
                 type: ActivityType.Watching,
             }],
         });
+
+        try {
+            client.db.exec("CREATE TABLE IF NOT EXISTS serverChannels (id INTEGER PRIMARY KEY default 1,suggestionChannel varchar(255), loggingChannel varchar(255), suggestionApprovalChannel varchar(255))");
+        } catch (err) {
+            console.error("[DB ERROR]", err);
+        }
+
+        try {
+            const res = client.db.prepare("SELECT * FROM serverChannels WHERE id = 1").get();
+
+            if (res) {
+                if (res.suggestionChannel) {
+                    client.suggestionChannel = await client.channels.fetch(res.suggestionChannel).catch(() => null);
+                }
+
+                if (res.loggingChannel) {
+                    client.loggingChannel = await client.channels.fetch(res.loggingChannel).catch(() => null);
+                }
+
+                if (res.suggestionApprovalChannel) {
+                    client.suggestionApprovalChannel = await client.channels.fetch(res.suggestionApprovalChannel).catch(() => null);
+                }
+            }
+        } catch (err) {
+            console.error("[DB ERROR]", err);
+        }
     },
 };
