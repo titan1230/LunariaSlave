@@ -4137,6 +4137,150 @@
         {
             "name": "Pecharunt",
             "value": "Pecharunt"
+        },
+        {
+            "name": "Tauros-Paldea-Blaze",
+            "value": "Tauros-Paldea-Blaze"
+        },
+        {
+            "name": "Tauros-Paldea-Aqua",
+            "value": "Tauros-Paldea-Aqua"
+        },
+        {
+            "name": "Rattata-Alola",
+            "value": "Rattata-Alola"
+        },
+        {
+            "name": "Raticate-Alola",
+            "value": "Raticate-Alola"
+        },
+        {
+            "name": "Raichu-Alola",
+            "value": "Raichu-Alola"
+        },
+        {
+            "name": "Sandshrew-Alola",
+            "value": "Sandshrew-Alola"
+        },
+        {
+            "name": "Sandslash-Alola",
+            "value": "Sandslash-Alola"
+        },
+        {
+            "name": "Vulpix-Alola",
+            "value": "Vulpix-Alola"
+        },
+        {
+            "name": "Ninetales-Alola",
+            "value": "Ninetales-Alola"
+        },
+        {
+            "name": "Diglett-Alola",
+            "value": "Diglett-Alola"
+        },
+        {
+            "name": "Dugtrio-Alola",
+            "value": "Dugtrio-Alola"
+        },
+        {
+            "name": "Meowth-Alola",
+            "value": "Meowth-Alola"
+        },
+        {
+            "name": "Persian-Alola",
+            "value": "Persian-Alola"
+        },
+        {
+            "name": "Geodude-Alola",
+            "value": "Geodude-Alola"
+        },
+        {
+            "name": "Graveler-Alola",
+            "value": "Graveler-Alola"
+        },
+        {
+            "name": "Golem-Alola",
+            "value": "Golem-Alola"
+        },
+        {
+            "name": "Grimer-Alola",
+            "value": "Grimer-Alola"
+        },
+        {
+            "name": "Muk-Alola",
+            "value": "Muk-Alola"
+        },
+        {
+            "name": "Exeggutor-Alola",
+            "value": "Exeggutor-Alola"
+        },
+        {
+            "name": "Marowak-Alola",
+            "value": "Marowak-Alola"
+        },
+        {
+            "name": "Growlithe-Hisui",
+            "value": "Growlithe-Hisui"
+        },
+        {
+            "name": "Arcanine-Hisui",
+            "value": "Arcanine-Hisui"
+        },
+        {
+            "name": "Voltorb-Hisui",
+            "value": "Voltorb-Hisui"
+        },
+        {
+            "name": "Electrode-Hisui",
+            "value": "Electrode-Hisui"
+        },
+        {
+            "name": "Typhlosion-Hisui",
+            "value": "Typhlosion-Hisui"
+        },
+        {
+            "name": "Qwilfish-Hisui",
+            "value": "Qwilfish-Hisui"
+        },
+        {
+            "name": "Sneasel-Hisui",
+            "value": "Sneasel-Hisui"
+        },
+        {
+            "name": "Samurott-Hisui",
+            "value": "Samurott-Hisui"
+        },
+        {
+            "name": "Lilligant-Hisui",
+            "value": "Lilligant-Hisui"
+        },
+        {
+            "name": "Zorua-Hisui",
+            "value": "Zorua-Hisui"
+        },
+        {
+            "name": "Zoroark-Hisui",
+            "value": "Zoroark-Hisui"
+        },
+        {
+            "name": "Braviary-Hisui",
+            "value": "Braviary-Hisui"
+        },
+        {
+            "name": "Enamorus-Therian",
+            "value": "Enamorus-Therian"
+        },
+        {
+            "name": "Tornadus-Therian",
+            "value": "Tornadus-Therian"
+        },
+        {
+            "name": "Thundurus-Therian",
+            "value": "Thundurus-Therian"
+        },
+        {
+            "name": "Landorus-Therian",
+            "value": "Landorus-Therian"
         }
     ]
 }
