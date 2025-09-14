@@ -30,8 +30,8 @@ module.exports = {
     run: async (client, interaction) => {
         await interaction.deferReply();
 
-        let pokemon = interaction.options.getString('pokemon');
-        pokemon = pokemon.charAt(0).toUpperCase() + pokemon.slice(1).toLowerCase();
+        let pokemon = interaction.options.getString('pokemon').split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join('-');
+        // pokemon = pokemon.charAt(0).toUpperCase() + pokemon.slice(1).toLowerCase();
         const gen = interaction.options.getString('gen') || '9';
 
         const set = require(`../../../sets/gen${gen}_sets.json`)
