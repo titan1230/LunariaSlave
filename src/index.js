@@ -4,6 +4,7 @@ require('./console/watermark');
 const { Client, Partials, Collection } = require('discord.js');
 const colors = require('colors');
 const { ClusterClient } = require('discord-hybrid-sharding');
+const db = require('./clients/sqlite');
 
 // Create Discord client
 const client = new Client({
@@ -40,6 +41,7 @@ client.commands = new Collection();
 client.events = new Collection();
 client.slash = new Collection();
 client.aliases = new Collection();
+client.db = db;
 
 // Attach ClusterClient
 client.cluster = new ClusterClient(client);
