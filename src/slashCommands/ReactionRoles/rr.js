@@ -19,7 +19,7 @@ module.exports = {
   run: async (client, interaction) => {
     const channel = interaction.options.getChannel('channel') || interaction.channel;
 
-    await interaction.reply({ content: 'Sending message...', ephemeral: true });
+    await interaction.reply({ content: 'Sending message...', flags: MessageFlags.Ephemeral });
 
     // Reply
     await channel.send({
@@ -31,6 +31,6 @@ module.exports = {
       flags: MessageFlags.IsComponentsV2,
       components: [devicesContainer, pingsContainer],
     });
-    await interaction.editReply({ content: 'Sent the reaction roles message.', ephemeral: true });
+    await interaction.editReply({ content: 'Sent the reaction roles message.', flags: MessageFlags.Ephemeral });
   }
 };

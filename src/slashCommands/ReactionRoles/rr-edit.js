@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const {
-    PermissionFlagsBits
+    PermissionFlagsBits,
+    MessageFlags,
 } = require('discord.js');
 
 const { ageContainer, devicesContainer, genderContainer, pingsContainer } = require('../../constants/ReactionRoles.js');
@@ -22,7 +23,7 @@ module.exports = {
         const option = interaction.options.getString('messageid').split('-');
 
         if (option.length !== 2) {
-            return interaction.reply({ content: 'Please provide the message ID in the format: channelID-messageID', ephemeral: true });
+            return interaction.reply({ content: 'Please provide the message ID in the format: channelID-messageID', flags: MessageFlags.Ephemeral });
         }
 
         const channelID = option[0];
@@ -32,16 +33,16 @@ module.exports = {
 
         const channel = await interaction.guild.channels.fetch(channelID).catch(() => null);
         if (!channel || channel.type !== 0) {
-            return interaction.reply({ content: 'Invalid channel ID or the channel is not a text channel.', ephemeral: true });
+            return interaction.reply({ content: 'Invalid channel ID or the channel is not a text channel.', flags: MessageFlags.Ephemeral });
         }
 
         const message = await channel.messages.fetch(messageID).catch(() => null);
         if (!message) {
-            return interaction.reply({ content: 'Message not found. Please ensure the message ID is correct and the message is in the specified channel.', ephemeral: true });
+            return interaction.reply({ content: 'Message not found. Please ensure the message ID is correct and the message is in the specified channel.', flags: MessageFlags.Ephemeral });
         }
 
         if (message.author.id !== process.env.CLIENTID) {
-            return interaction.reply({ content: 'I can only edit messages that I have sent.', ephemeral: true });
+            return interaction.reply({ content: 'I can only edit messages that I have sent.', flags: MessageFlags.Ephemeral });
         }
 
         if (part === 1) {
@@ -50,6 +51,6 @@ module.exports = {
             await message.edit({ components: [devicesContainer, pingsContainer] });
         }
 
-        await interaction.reply({ content: 'Reaction roles message updated successfully!', ephemeral: true });
+        await interaction.reply({ content: 'Reaction roles message updated successfully!', flags: MessageFlags.Ephemeral });
     }
 };      

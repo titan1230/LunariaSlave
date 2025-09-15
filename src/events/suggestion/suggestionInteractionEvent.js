@@ -1,4 +1,4 @@
-const { PermissionFlagsBits, EmbedBuilder, ButtonBuilder } = require('discord.js');
+const { EmbedBuilder, MessageFlags } = require('discord.js');
 
 module.exports = {
     sub: "SuggestionInteraction",
@@ -19,7 +19,7 @@ module.exports = {
                 .setColor('Green')
                 .setFooter({ text: `Suggestion Approved by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
             message.edit({ embeds: [newEmbed], components: [] });
-            interaction.reply({ content: 'Suggestion Approved', ephemeral: true });
+            interaction.reply({ content: 'Suggestion Approved', flags: MessageFlags.Ephemeral });
 
             const suggestionChannel = await client.suggestionChannel;
 
@@ -37,7 +37,7 @@ module.exports = {
                 .setFooter({ text: `Suggestion Denied by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
 
             message.edit({ embeds: [newEmbed], components: [] });
-            return interaction.reply({ content: 'Suggestion Denied', ephemeral: true });
+            return interaction.reply({ content: 'Suggestion Denied', flags: MessageFlags.Ephemeral });
         }
     }
 };

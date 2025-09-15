@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
+const { SlashCommandBuilder, PermissionsBitField, MessageFlags } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -40,13 +40,13 @@ module.exports = {
                     client.suggestionApprovalChannel = channel;
                     break;
                 default:
-                    return interaction.reply({ content: 'Invalid channel type.', ephemeral: true });
+                    return interaction.reply({ content: 'Invalid channel type.', flags: MessageFlags.Ephemeral });
             }
 
-            return interaction.reply({ content: `Successfully set the ${channelType} channel to <#${channel.id}>.`, ephemeral: true });
+            return interaction.reply({ content: `Successfully set the ${channelType} channel to <#${channel.id}>.`, flags: MessageFlags.Ephemeral });
         } catch (err) {
             console.error("[DB ERROR]", err);
-            return interaction.reply({ content: 'There was an error while accessing the database.', ephemeral: true });
+            return interaction.reply({ content: 'There was an error while accessing the database.', flags: MessageFlags.Ephemeral });
         }
     },
 };
