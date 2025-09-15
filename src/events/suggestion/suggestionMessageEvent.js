@@ -10,7 +10,7 @@ module.exports = {
      */
     async execute(client, message) {
         if (message.author.bot || !message.guild) return;
-        if (client.suggestedChannel && message.channelId !== client.suggestedChannel.id) return;
+        if (client.suggestionChannel && message.channel.id !== client.suggestionChannel.id) return;
 
         const ApprovalEmbed = new EmbedBuilder()
             .setColor('Random')
@@ -30,6 +30,8 @@ module.exports = {
             .setLabel('Deny')
             .setEmoji('❌')
             .setStyle(ButtonStyle.Danger)
+
+        await message.delete().catch(() => { })
 
         if (client.suggestionApprovalChannel) {
             client.suggestionApprovalChannel.send({ embeds: [ApprovalEmbed], components: [{ type: 1, components: [ApprovalButton, DenialButton] }] });
