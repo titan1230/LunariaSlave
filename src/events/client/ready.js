@@ -38,14 +38,17 @@ module.exports = {
             if (res) {
                 if (res.suggestionChannel) {
                     client.suggestionChannel = await client.channels.fetch(res.suggestionChannel).catch(() => null);
+                    console.log(`Suggestion Channel ID - ${res.suggestionChannel}`);
                 }
 
                 if (res.loggingChannel) {
                     client.loggingChannel = await client.channels.fetch(res.loggingChannel).catch(() => null);
+                    console.log(`Logging Channel ID - ${res.loggingChannel}`);
                 }
 
                 if (res.suggestionApprovalChannel) {
                     client.suggestionApprovalChannel = await client.channels.fetch(res.suggestionApprovalChannel).catch(() => null);
+                    console.log(`Suggestion Approval Channel ID - ${res.suggestionApprovalChannel}`);
                 }
             }
         } catch (err) {
