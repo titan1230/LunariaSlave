@@ -17,7 +17,6 @@ module.exports = {
         if (customID === 'suggestion_accept') {
             const newEmbed = EmbedBuilder.from(message.embeds[0])
                 .setColor('Green')
-            message.edit({ embeds: [newEmbed], components: [] });
             interaction.reply({ content: 'Suggestion Approved', flags: MessageFlags.Ephemeral });
 
             const suggestionChannel = await client.suggestionChannel;
@@ -30,6 +29,9 @@ module.exports = {
                     await sent.react('👎');
                 }
             }
+
+            newEmbed.setFooter({ text: `Suggestion Approved by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
+            await message.edit({ embeds: [newEmbed], components: [] });
         } else if (customID === 'suggestion_deny') {
             const newEmbed = EmbedBuilder.from(message.embeds[0])
                 .setColor('Red')
