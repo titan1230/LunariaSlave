@@ -1,7 +1,5 @@
 const { Events } = require('discord.js');
 const { ActivityType } = require('discord.js');
-const distube = require('../../clients/distube');
-
 
 module.exports = {
     name: Events.ClientReady,
@@ -28,8 +26,6 @@ module.exports = {
                 type: ActivityType.Watching,
             }],
         });
-
-        client.distube = distube;
 
         try {
             client.db.exec("CREATE TABLE IF NOT EXISTS serverChannels (id INTEGER PRIMARY KEY default 1,suggestionChannel varchar(255), loggingChannel varchar(255), suggestionApprovalChannel varchar(255))");
