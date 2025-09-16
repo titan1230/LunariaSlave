@@ -1,7 +1,10 @@
+const { Events } = require('discord.js');
 const { ActivityType } = require('discord.js');
+const distube = require('../../clients/distube');
+
 
 module.exports = {
-    name: 'clientReady',
+    name: Events.ClientReady,
     once: true,
     /**
      * 
@@ -26,6 +29,8 @@ module.exports = {
             }],
         });
 
+        client.distube = distube;
+
         try {
             client.db.exec("CREATE TABLE IF NOT EXISTS serverChannels (id INTEGER PRIMARY KEY default 1,suggestionChannel varchar(255), loggingChannel varchar(255), suggestionApprovalChannel varchar(255))");
         } catch (err) {
@@ -39,16 +44,22 @@ module.exports = {
                 if (res.suggestionChannel) {
                     client.suggestionChannel = await client.channels.fetch(res.suggestionChannel).catch(() => null);
                     console.log(`Suggestion Channel ID - ${res.suggestionChannel}`);
+                } else {
+                    client.suggestionChannel = null;
                 }
 
                 if (res.loggingChannel) {
                     client.loggingChannel = await client.channels.fetch(res.loggingChannel).catch(() => null);
                     console.log(`Logging Channel ID - ${res.loggingChannel}`);
+                } else {
+                    client.loggingChannel = null;
                 }
 
                 if (res.suggestionApprovalChannel) {
                     client.suggestionApprovalChannel = await client.channels.fetch(res.suggestionApprovalChannel).catch(() => null);
                     console.log(`Suggestion Approval Channel ID - ${res.suggestionApprovalChannel}`);
+                } else {
+                    client.suggestionApprovalChannel = null;
                 }
             }
         } catch (err) {
