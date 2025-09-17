@@ -4,6 +4,7 @@ require('./console/watermark');
 const { Client, Partials, Collection } = require('discord.js');
 const colors = require('colors');
 const { ClusterClient } = require('discord-hybrid-sharding');
+
 const db = require('./clients/sqlite');
 
 // Create Discord client
@@ -57,7 +58,7 @@ client.login(process.env.TOKEN)
         process.exit();
     });
 
-client.loggingChannel = client.guilds.fetch(process.env.GUILD_ID).then(g => g.channels.fetch(process.env.LOGGING_CHANNEL_ID).then(c => c)).catch(console.error);
+require('./clients/riffy')(client);
 
 // Global error handling
 client.on('error', (error) => {
