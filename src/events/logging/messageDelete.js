@@ -1,4 +1,4 @@
-const { Events } = require("discord.js");
+const { Events, AuditLogEvent, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: Events.MessageDelete,
