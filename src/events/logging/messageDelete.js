@@ -11,6 +11,7 @@ module.exports = {
     async execute(client, message) {
         if (message.author?.bot) return;
         if (!message.guild) return;
+        if (message.channel.id === '1413810898618941552') return;
 
         if (message.partial) await message.fetch().catch(() => { });
 
