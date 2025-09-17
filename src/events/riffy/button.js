@@ -1,4 +1,4 @@
-const { MessageFlags, Events, ActionRowBuilder, ButtonBuilder, ButtonStyle   } = require('discord.js');
+const { MessageFlags, Events, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 module.exports = {
     name: Events.InteractionCreate,
@@ -14,15 +14,15 @@ module.exports = {
 
         const player = client.riffy.players.get(interaction.guild.id);
 
-        if (!player) {
-            return interaction.reply({
-                content: "There is no active player for this server.",
-                flags: MessageFlags.Ephemeral,
-            });
-        }
-
         if (interaction.customId === 'pause') {
             await interaction.deferUpdate();
+
+            if (!player) {
+                return interaction.reply({
+                    content: "There is no active player for this server.",
+                    flags: MessageFlags.Ephemeral,
+                });
+            }
 
             player.pause(true);
 
@@ -50,6 +50,13 @@ module.exports = {
         } else if (interaction.customId === 'play') {
             await interaction.deferUpdate();
 
+            if (!player) {
+                return interaction.reply({
+                    content: "There is no active player for this server.",
+                    flags: MessageFlags.Ephemeral,
+                });
+            }
+
             player.pause(false);
 
             const row = new ActionRowBuilder()
@@ -76,6 +83,13 @@ module.exports = {
 
         } else if (interaction.customId === 'skip') {
             await interaction.deferUpdate();
+
+            if (!player) {
+                return interaction.reply({
+                    content: "There is no active player for this server.",
+                    flags: MessageFlags.Ephemeral,
+                });
+            }
 
             player.stop();
 
@@ -111,6 +125,13 @@ module.exports = {
             })
         } else if (interaction.customId === 'disconnect') {
             await interaction.deferUpdate();
+
+            if (!player) {
+                return interaction.reply({
+                    content: "There is no active player for this server.",
+                    flags: MessageFlags.Ephemeral,
+                });
+            }
 
             player.destroy();
 
