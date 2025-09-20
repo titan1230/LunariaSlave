@@ -19,6 +19,8 @@ module.exports = (client) => {
         },
         defaultSearchPlatform: "ytmsearch",
         restVersion: "v4",
+        reconnectTries: 20,
+        reconnectInterval: 5000,
     });
 
     riffy.on("nodeConnect", (node) => {
@@ -29,6 +31,14 @@ module.exports = (client) => {
         console.log("\n---------------------")
         console.log(`Node ${node.name} encountered an error: ${error.message}`, "error")
         console.log("---------------------")
+    });
+
+    riffy.on("nodeDisconnect", (node, reason) => {
+        console.log(`Node "${node.name}" disconnected. Reason: ${reason}`);
+    });
+
+    riffy.on("nodeReconnect", (node) => {
+        console.log(`Node "${node.name}" is reconnecting...`);
     });
 
     riffy.on("queueEnd", async (player) => {
