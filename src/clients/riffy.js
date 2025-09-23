@@ -5,6 +5,12 @@ const { Dynamic } = require("musicard");
 module.exports = (client) => {
     const nodes = [
         {
+            host: "lavalink.jirayu.net",
+            port: 13592,
+            password: "youshallnotpass",
+            secure: false
+        },
+        {
             host: "lava-v4.ajieblogs.eu.org",
             password: "https://dsc.gg/ajidevserver",
             port: 443,
