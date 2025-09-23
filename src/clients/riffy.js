@@ -23,7 +23,7 @@ module.exports = (client) => {
             const guild = client.guilds.cache.get(payload.d.guild_id);
             if (guild) guild.shard.send(payload);
         },
-        defaultSearchPlatform: "ytmsearch",
+        defaultSearchPlatform: "ytsearch",
         restVersion: "v4",
         reconnectTries: 20,
         reconnectInterval: 5000,
@@ -114,6 +114,8 @@ module.exports = (client) => {
 
         if (player.message) await player.message.delete();
     })
+
+    riffy.on('trackStuck', async (player, track, payload) => {});
 
     riffy.on('trackError', async (player, track, payload) => {
         console.log(payload);
