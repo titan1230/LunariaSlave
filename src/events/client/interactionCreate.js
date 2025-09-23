@@ -27,8 +27,25 @@ module.exports = {
             const command = client.slash.get(interaction.commandName);
             if (!command) return;
 
+            const cooldown = client.cooldown.get(`${interaction.commandName}-${interaction.user.id}`);
+
+            if (command.cooldown && cooldown) {
+                if (Date.now() < cooldown) {
+                    interaction.reply({
+                        content: `${config.cross_emoji} You are on a cooldown. Please wait <t:${Math.floor(cooldown / 1000)}:R> before using this command again.`,
+                        flags: MessageFlags.Ephemeral,
+                    });
+                    return;
+                }
+            }
+
+            client.cooldown.set(`${interaction.commandName}-${interaction.user.id}`, Date.now() + command.cooldown * 1000);
+
             await command.run(client, interaction, interaction.options);
 
+            setTimeout(() => {
+                client.cooldown.delete(`${interaction.commandName}-${interaction.user.id}`);
+            }, command.cooldown * 1000);
         } catch (err) {
             console.error('[INTERACTION ERROR]', err);
 
