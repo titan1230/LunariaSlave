@@ -33,22 +33,22 @@ module.exports = {
 
         switch (luck) {
             case 0:
-                response = `🙏 ${user.username}, the gods have ignored your prayers. Better luck next time!`;
+                response = `🙏 ${user.username}, Lunala has ignored your prayers. Better luck next time!`;
                 break;
             case 1:
-                response = `🙏 ${user.username}, the gods have heard your prayers but remain indifferent.`;
+                response = `🙏 ${user.username}, Lunala has heard your prayers but remains indifferent.`;
                 break;
             case 2:
-                response = `🙏 ${user.username}, the gods acknowledge your prayers but offer no blessings.`;
+                response = `🙏 ${user.username}, Lunala acknowledges your prayers but offers no blessings.`;
                 break;
             case 3:
-                response = `🙏 ${user.username}, the gods have granted you a small blessing. Use it wisely!`;
+                response = `🙏 ${user.username}, Lunala has granted you a small blessing. Use it wisely!`;
                 break;
             case 4:
-                response = `🙏 ${user.username}, the gods have bestowed upon you a great blessing!`;
+                response = `🙏 ${user.username}, Lunala has bestowed upon you a great blessing!`;
                 break;
             case 5:
-                response = `🙏 ${user.username}, the gods are pleased with your devotion and grant you their favor!`;
+                response = `🙏 ${user.username}, Lunala is pleased with your devotion and grants you their favor!`;
                 break;
             default:
                 response = `🙏 ${user.username}, something went wrong while praying.`;
