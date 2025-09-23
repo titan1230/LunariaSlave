@@ -91,9 +91,5 @@ module.exports = {
 
             if (!player.playing && !player.paused) return player.play();
         });
-
-        collector.on('end', async (collected) => {
-            await interaction.editReply({ components: [new TextDisplayBuilder().setContent("Time Up")] });
-        });
     }
 }
