@@ -41,6 +41,7 @@ if (!process.env.TOKEN) {
 client.commands = new Collection();
 client.events = new Collection();
 client.slash = new Collection();
+client.cooldown = new Collection();
 client.aliases = new Collection();
 client.db = db;
 
