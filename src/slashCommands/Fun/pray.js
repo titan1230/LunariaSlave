@@ -1,7 +1,8 @@
 const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
+const chance = require('chance').Chance();
 
 module.exports = {
-    cooldown: 60,
+    cooldown: 60 * 20,
     data: new SlashCommandBuilder()
         .setName('pray')
         .addUserOption(option =>
@@ -17,7 +18,9 @@ module.exports = {
         await interaction.deferReply();
 
         const user = interaction.options.getUser('user') || interaction.user;
-        const luck = Math.floor(Math.random() * (5 - (-5) + 1)) - 5;
+        // const luck = Math.floor(Math.random() * (5 - (-5) + 1)) - 5;
+
+        const luck = chance.weighted([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 99], [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 2, 0.000001]);
 
         if (user.bot) {
             return interaction.editReply('You cannot pray for bots!');
@@ -69,14 +72,20 @@ module.exports = {
                 response = `🌑 🔮 ${user.username}, something went wrong while praying.`;
         }
 
-        response += `\nYou now have ${(getUserLuck ? getUserLuck.luck : 0) + luck} luck.`;
+        response += `\nYou now have [${(getUserLuck ? getUserLuck.luck : 0) + luck}](discord:// '${luck >= 0 ? `+${luck}` : luck}') luck.`;
 
         if (interaction.user.id !== user.id) {
             response = `🙏 ${interaction.user.username} prayed for ${user.username}!\n\n` + response;
         }
 
+        const totalLuck = (getUserLuck ? getUserLuck.luck : 0) + luck;
+
         await client.db.prepare("INSERT INTO userLuck (userID) VALUES (?) ON CONFLICT(userID) DO UPDATE SET luck = luck + ?").run(user.id, luck);
 
         await interaction.editReply(response);
+
+        if (totalLuck >= 100) {
+            interaction.channel.send(`🎉 ${user.username} has reached 100 luck and is granted the "Favored by Lunala" role!`);
+        }
     },
 };
