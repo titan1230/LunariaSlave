@@ -17,7 +17,7 @@ module.exports = {
         await interaction.deferReply();
 
         const user = interaction.options.getUser('user') || interaction.user;
-        const luck = Math.floor(Math.random() * (5 - 0 + 1) + 0);
+        const luck = Math.floor(Math.random() * (5 - (-5) + 1)) - 5;
 
         if (user.bot) {
             return interaction.editReply('You cannot pray for bots!');
@@ -32,26 +32,41 @@ module.exports = {
         let response = '';
 
         switch (luck) {
+            case -5:
+                response = `🌑 🔮 ${user.username}, Lunala curses your insolence — shadows coil tightly around you.`;
+                break;
+            case -4:
+                response = `🌑 🔮 ${user.username}, Lunala turns away in anger, leaving you weakened and forsaken.`;
+                break;
+            case -3:
+                response = `🌑 🔮 ${user.username}, your prayer has stirred Lunala's wrath. Misfortune stalks your path.`;
+                break;
+            case -2:
+                response = `🌑 🔮 ${user.username}, Lunala rejects your plea, a chill of disfavor settling over you.`;
+                break;
+            case -1:
+                response = `🌑 🔮 ${user.username}, Lunala finds you unworthy and dismisses your prayer.`;
+                break;
             case 0:
-                response = `🙏 ${user.username}, Lunala has ignored your prayers. Better luck next time!`;
+                response = `🌑 🔮 ${user.username}, your words drift into the void — Lunala gives no answer.`;
                 break;
             case 1:
-                response = `🙏 ${user.username}, Lunala has heard your prayers but remains indifferent.`;
+                response = `🌑 🔮 ${user.username}, Lunala listens in silence, neither blessing nor condemning you.`;
                 break;
             case 2:
-                response = `🙏 ${user.username}, Lunala acknowledges your prayers but offers no blessings.`;
+                response = `🌑 🔮 ${user.username}, Lunala acknowledges your devotion but offers no gifts.`;
                 break;
             case 3:
-                response = `🙏 ${user.username}, Lunala has granted you a small blessing. Use it wisely!`;
+                response = `🌑 🔮 ${user.username}, Lunala grants you a flicker of light — a modest blessing.`;
                 break;
             case 4:
-                response = `🙏 ${user.username}, Lunala has bestowed upon you a great blessing!`;
+                response = `🌑 🔮 ${user.username}, Lunala shines favorably upon you, gifting a powerful blessing.`;
                 break;
             case 5:
-                response = `🙏 ${user.username}, Lunala is pleased with your devotion and grants you their favor!`;
+                response = `🌑 🔮 ${user.username}, Lunala embraces your devotion fully — their divine favor is yours!`;
                 break;
             default:
-                response = `🙏 ${user.username}, something went wrong while praying.`;
+                response = `🌑 🔮 ${user.username}, something went wrong while praying.`;
         }
 
         response += `\nYou now have ${(getUserLuck ? getUserLuck.luck : 0) + luck} luck.`;
