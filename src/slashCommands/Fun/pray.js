@@ -33,7 +33,7 @@ module.exports = {
 
         switch (luck) {
             case -5:
-                response = `🌑 🔮 ${user.username}, Lunala curses your insolence — shadows coil tightly around you.`;
+                response = `🌑 🔮 ${user.username}, Lunala curses your insolence - shadows coil tightly around you.`;
                 break;
             case -4:
                 response = `🌑 🔮 ${user.username}, Lunala turns away in anger, leaving you weakened and forsaken.`;
@@ -48,7 +48,7 @@ module.exports = {
                 response = `🌑 🔮 ${user.username}, Lunala finds you unworthy and dismisses your prayer.`;
                 break;
             case 0:
-                response = `🌑 🔮 ${user.username}, your words drift into the void — Lunala gives no answer.`;
+                response = `🌑 🔮 ${user.username}, your words drift into the void - Lunala gives no answer.`;
                 break;
             case 1:
                 response = `🌑 🔮 ${user.username}, Lunala listens in silence, neither blessing nor condemning you.`;
@@ -57,13 +57,13 @@ module.exports = {
                 response = `🌑 🔮 ${user.username}, Lunala acknowledges your devotion but offers no gifts.`;
                 break;
             case 3:
-                response = `🌑 🔮 ${user.username}, Lunala grants you a flicker of light — a modest blessing.`;
+                response = `🌑 🔮 ${user.username}, Lunala grants you a flicker of light - a modest blessing.`;
                 break;
             case 4:
                 response = `🌑 🔮 ${user.username}, Lunala shines favorably upon you, gifting a powerful blessing.`;
                 break;
             case 5:
-                response = `🌑 🔮 ${user.username}, Lunala embraces your devotion fully — their divine favor is yours!`;
+                response = `🌑 🔮 ${user.username}, Lunala embraces your devotion fully - their divine favor is yours!`;
                 break;
             default:
                 response = `🌑 🔮 ${user.username}, something went wrong while praying.`;
