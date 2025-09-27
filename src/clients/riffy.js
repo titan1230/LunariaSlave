@@ -10,12 +10,6 @@ module.exports = (client) => {
             password: "youshallnotpass",
             secure: false
         },
-        {
-            host: "lava-v4.ajieblogs.eu.org",
-            password: "https://dsc.gg/ajidevserver",
-            port: 443,
-            secure: true,
-        },
     ];
 
     const riffy = new Riffy(client, nodes, {
@@ -40,7 +34,7 @@ module.exports = (client) => {
     });
 
     riffy.on("nodeDisconnect", (node, reason) => {
-        console.log(`Node "${node.name}" disconnected. Reason: ${reason}`);
+        console.log(`Node "${node.name}" disconnected. Reason: ${JSON.stringify(reason)}`);
     });
 
     riffy.on("nodeReconnect", (node) => {
