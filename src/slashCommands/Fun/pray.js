@@ -1,8 +1,8 @@
-const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 const chance = require('chance').Chance();
 
 module.exports = {
-    cooldown: 60 * 20,
+    cooldown: 60 * 15,
     data: new SlashCommandBuilder()
         .setName('pray')
         .addUserOption(option =>
@@ -84,8 +84,10 @@ module.exports = {
 
         await interaction.editReply(response);
 
-        if (totalLuck >= 100) {
-            interaction.channel.send(`🎉 ${user.username} has reached 100 luck and is granted the "Favored by Lunala" role!`);
+        if (totalLuck >= 100 || totalLuck <= -100) {
+            interaction.channel.send(`🎉 @<${user.id}> you have reached a special luck milestone.\n\n✨ By the light of destiny and the hands of eternity, Lunala bestow upon you the crest of boundless luck.\n\n🔮 May every path you walk turn to gold, every choice shine with favor, and every shadow bend into opportunity.\n\nDM a staff member to claim your reward.\n\n-# Your luck has been reset to 0.`);
+
+            await client.db.prepare("UPDATE userLuck SET luck = 0 WHERE userID = ?").run(user.id);
         }
     },
 };
