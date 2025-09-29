@@ -29,15 +29,20 @@ module.exports = {
 
         client.riffy.init(process.env.CLIENTID);
 
+        client.expressApp.listen("20101", () => {
+            console.log("Express Backend Started!")
+        })
+
         try {
             client.db.exec("CREATE TABLE IF NOT EXISTS serverChannels (id INTEGER PRIMARY KEY default 1,suggestionChannel varchar(255), loggingChannel varchar(255), suggestionApprovalChannel varchar(255))");
             client.db.exec("CREATE TABLE IF NOT EXISTS userLuck (userID varchar(255) PRIMARY KEY, luck INT default 0)");
+            client.db.exec("CREATE TABLE IF NOT EXISTS msg (userID varchar(255) PRIMARY KEY, count INT default 0)");
         } catch (err) {
             console.error("[DB ERROR]", err);
         }
 
         try {
-            const res = client.db.prepare("SELECT * FROM serverChannels WHERE id = 1").get();
+            const res = await client.db.prepare("SELECT * FROM serverChannels WHERE id = 1").get();
 
             if (res) {
                 if (res.suggestionChannel) {
