@@ -16,12 +16,6 @@ module.exports = (client) => {
     });
 
     app.get('/hour', async (req, res) => {
-        const pass = req.query.pass;
-
-        if (!pass || pass != process.env.pass) {
-            res.send("Unauthorized").status(401)
-        }
-
         let s, s1, s2, s3, s4, s5, se;
 
         let response;
