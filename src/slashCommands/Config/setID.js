@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionsBitField, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, PermissionsBitField, MessageFlags, ChannelType } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -13,7 +13,7 @@ module.exports = {
                 .setRequired(true)
         )
         .addChannelOption(option =>
-            option.setName('channel').setDescription('The channel to set.').setRequired(true)
+            option.setName('channel').setDescription('The channel to set.').setRequired(true).addChannelTypes([ChannelType.GuildText])
         )
         .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
         .setDescription('Set the ID for the channels.'),
