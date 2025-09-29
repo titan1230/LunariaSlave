@@ -43,6 +43,7 @@ client.events = new Collection();
 client.slash = new Collection();
 client.cooldown = new Collection();
 client.aliases = new Collection();
+client.levelingCooldown = new Collection();
 client.db = db;
 
 // Attach ClusterClient
@@ -60,6 +61,7 @@ client.login(process.env.TOKEN)
     });
 
 require('./clients/riffy')(client);
+require('./clients/express')(client);
 
 // Global error handling
 client.on('error', (error) => {
