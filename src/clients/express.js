@@ -41,6 +41,15 @@ module.exports = (client) => {
         res.send('Updated!')
     });
 
+    app.get('/mon', async (req, res) => {
+        try {
+            db.prepare(`TRUNCATE TABLE msg`).run()
+        } catch { }
+        
+        await fetch("http://prem-eu1.bot-hosting.net:20101/hour");
+
+        res.send('Truncated!')
+    });
 
     client.expressApp = app;
 }
