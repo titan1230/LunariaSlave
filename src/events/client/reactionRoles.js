@@ -14,21 +14,11 @@ module.exports = {
         try {
             if (interaction.isChatInputCommand()) return;
 
-            await interaction.deferReply({ ephemeral: true });
+            await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
             // Block commands in DMs
             if (!interaction.guild) {
-                const accentColor = parseInt(config.color.replace('#', ''), 16);
-                const dmBlock = new ContainerBuilder()
-                    .setAccentColor(accentColor)
-                    .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent(`${config.crossmark_emoji} This command can only be used in a server.`)
-                    );
-
-                return interaction.editReply({
-                    flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
-                    components: [dmBlock],
-                });
+                return;
             }
 
             const id = interaction.customId;
@@ -231,17 +221,6 @@ module.exports = {
 
         } catch (err) {
             console.error('[INTERACTION ERROR]', err);
-
-            if (interaction.isRepliable() && !interaction.replied && !interaction.deferred) {
-                const errorBlock = new ContainerBuilder()
-                    .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent('An unexpected error occurred while handling this interaction.')
-                    );
-                interaction.editReply({
-                    flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
-                    components: [errorBlock],
-                }).catch(console.error);
-            }
         }
     },
 };
