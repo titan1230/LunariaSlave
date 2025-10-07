@@ -12,7 +12,7 @@ module.exports = {
    */
     async execute(client, interaction) {
         try {
-            if (interaction.isChatInputCommand()) return;
+            if (!interaction.isButton()) return;
 
             await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
