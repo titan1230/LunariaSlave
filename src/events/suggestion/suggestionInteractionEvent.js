@@ -11,13 +11,15 @@ module.exports = {
     async execute(client, interaction) {
         if (!interaction.isButton()) return;
 
+        await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
         const customID = interaction.customId;
         const message = interaction.message;
 
         if (customID === 'suggestion_accept') {
             const newEmbed = EmbedBuilder.from(message.embeds[0])
                 .setColor('Green')
-            interaction.reply({ content: 'Suggestion Approved', flags: MessageFlags.Ephemeral });
+            interaction.editReply({ content: 'Suggestion Approved', flags: MessageFlags.Ephemeral });
 
             const suggestionChannel = await client.suggestionChannel;
 
@@ -38,7 +40,7 @@ module.exports = {
                 .setFooter({ text: `Suggestion Denied by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
 
             message.edit({ embeds: [newEmbed], components: [] });
-            return interaction.reply({ content: 'Suggestion Denied', flags: MessageFlags.Ephemeral });
+            return interaction.editReply({ content: 'Suggestion Denied', flags: MessageFlags.Ephemeral });
         }
     }
 };
