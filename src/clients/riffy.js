@@ -5,10 +5,10 @@ const { Dynamic } = require("musicard");
 module.exports = (client) => {
     const nodes = [
         {
-            host: "lavalink_v4.muzykant.xyz",
-            port: 443,
-            password: "https://discord.gg/v6sdrD9kPh",
-            secure: true
+            host: "lavahatry4.techbyte.host",
+            port: 3000,
+            password: "NAIGLAVA-dash.techbyte.host",
+            secure: false
         },
     ];
 
