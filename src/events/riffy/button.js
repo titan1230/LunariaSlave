@@ -12,6 +12,10 @@ module.exports = {
     async execute(client, interaction) {
         if (!interaction.isButton()) return;
 
+        const validIDs = ['pause', 'play', 'skip', 'disconnect'];
+
+        if (!validIDs.includes(interaction.customId)) return;
+
         const player = client.riffy.players.get(interaction.guild.id);
 
         if (interaction.customId === 'pause') {

@@ -11,6 +11,8 @@ module.exports = {
     async execute(client, interaction) {
         if (!interaction.isButton()) return;
 
+        if (!interaction.customId.startsWith('suggestion_')) return;
+
         await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
         const customID = interaction.customId;
