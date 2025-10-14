@@ -21,7 +21,7 @@ module.exports = {
 
         if (!embed.title || !embed.description) return;
 
-        if (!embed.description.includes('★')) return;
+        if (!embed.description.includes('★') || !embed.title.includes("Vs.")) return;
 
         const forward = EmbedBuilder.from(embed)
 
