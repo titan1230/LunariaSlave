@@ -3,6 +3,7 @@ const { Events } = require('discord.js');
 
 module.exports = {
     name: Events.MessageCreate,
+    sub: "MyuuShinyPins",
     once: false,
     /**
      * 
