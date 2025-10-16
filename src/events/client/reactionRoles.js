@@ -13,6 +13,7 @@ module.exports = {
     async execute(client, interaction) {
         try {
             if (!interaction.isButton()) return;
+            if (!interaction.customId.endsWith('role')) return;
 
             await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
