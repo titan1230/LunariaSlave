@@ -47,7 +47,7 @@ module.exports = {
             const cronRows = await client.db.prepare("SELECT * FROM crons").all();
 
             for (const row of cronRows) {
-                console.log(row)
+                // console.log(row)
                 cron.schedule(`${row.minutes} ${row.hours} * * *`, async () => {
                     await client.users.fetch(row.userID).then(user => {
                         user.send(`⏰ Daily Reminder: ${row.message}`).catch(console.error);

@@ -19,7 +19,7 @@ module.exports = {
         const time = new Date().toLocaleString('en-US', { timeZone: 'UTC', hour12: false, });
         const [hours, minutes] = time.split(' ')[1].split(':');
 
-        console.log(hours, minutes);
+        // console.log(hours, minutes);
         await client.db.prepare("INSERT INTO crons (userID, hours, minutes, message) VALUES (?, ?, ?, ?) ON CONFLICT(userID) DO UPDATE SET hours = ?, minutes = ?, message = ?").run(interaction.user.id, parseInt(hours), parseInt(minutes), message, parseInt(hours), parseInt(minutes), message);
 
         cron.schedule(`${minutes} ${hours} * * *`, async () => {
