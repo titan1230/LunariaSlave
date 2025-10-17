@@ -146,3 +146,6 @@ vite.config.ts.timestamp-*
 
 # Cookie
 yt_cookie.json
+
+# Editor
+.vscode/
