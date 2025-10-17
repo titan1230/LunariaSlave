@@ -22,11 +22,14 @@ module.exports = {
         // console.log(hours, minutes);
         await client.db.prepare("INSERT INTO crons (userID, hours, minutes, message) VALUES (?, ?, ?, ?) ON CONFLICT(userID) DO UPDATE SET hours = ?, minutes = ?, message = ?").run(interaction.user.id, parseInt(hours), parseInt(minutes), message, parseInt(hours), parseInt(minutes), message);
 
-        cron.schedule(`${minutes} ${hours} * * *`, async () => {
+        const task = cron.schedule(`${minutes} ${hours} * * *`, async () => {
             interaction.user.send(`⏰ Daily Reminder: ${message}`).catch(console.error);
         }, {
             timezone: "UTC"
         });
+
+        client.tasks.set(interaction.user.id, task);
+
         return interaction.reply({ content: `✅ You will be reminded daily with the message: "${message}"`, flags: MessageFlags.Ephemeral });
     },
 };
