@@ -1,4 +1,4 @@
-const { Events } = require('discord.js');
+const { Events, Collection } = require('discord.js');
 const { ActivityType } = require('discord.js');
 const cron = require('node-cron');
 
@@ -46,15 +46,19 @@ module.exports = {
         try {
             const cronRows = await client.db.prepare("SELECT * FROM crons").all();
 
+            client.tasks = new Collection();
+
             for (const row of cronRows) {
                 // console.log(row)
-                cron.schedule(`${row.minutes} ${row.hours} * * *`, async () => {
+                const task = cron.schedule(`${row.minutes} ${row.hours} * * *`, async () => {
                     await client.users.fetch(row.userID).then(user => {
                         user.send(`⏰ Daily Reminder: ${row.message}`).catch(console.error);
                     }).catch(console.error);
                 }, {
                     timezone: "UTC"
                 });
+
+                client.tasks.set(row.userID, task);
             }
         } catch (err) {
             console.error("[DB ERROR]", err);
