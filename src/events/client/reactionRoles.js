@@ -215,6 +215,33 @@ module.exports = {
 
                     await interaction.member.roles.add(gamblersRole);
                     return interaction.editReply({ content: `Added the <@&${gamblersRole.id}> role.`, flags: MessageFlags.Ephemeral });
+                case 'PvP_role':
+                    const PvPRole = interaction.guild.roles.cache.find(role => role.id === roleIDs.PvP_role);
+                    if (!PvPRole) {
+                        return interaction.editReply({ content: 'Role not found on the server.', flags: MessageFlags.Ephemeral });
+                    }
+
+                    if (interaction.member.roles.cache.get(roleIDs.PvP_role)) {
+                        await interaction.member.roles.remove(PvPRole);
+                        return interaction.editReply({ content: `Removed the <@&${PvPRole.id}> role.`, flags: MessageFlags.Ephemeral });
+                    }
+
+                    await interaction.member.roles.add(PvPRole);
+                    return interaction.editReply({ content: `Added the <@&${PvPRole.id}> role.`, flags: MessageFlags.Ephemeral });
+                case 'movie_game_role':
+                    const movieGameRole = interaction.guild.roles.cache.find(role => role.id === roleIDs.movie_game_role);
+
+                    if (!movieGameRole) {
+                        return interaction.editReply({ content: 'Role not found on the server.', flags: MessageFlags.Ephemeral });
+                    }
+
+                    if (interaction.member.roles.cache.get(roleIDs.movie_game_role)) {
+                        await interaction.member.roles.remove(movieGameRole);
+                        return interaction.editReply({ content: `Removed the <@&${movieGameRole.id}> role.`, flags: MessageFlags.Ephemeral });
+                    }
+
+                    await interaction.member.roles.add(movieGameRole);
+                    return interaction.editReply({ content: `Added the <@&${movieGameRole.id}> role.`, flags: MessageFlags.Ephemeral });
 
                 default:
                     return

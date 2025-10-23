@@ -116,13 +116,29 @@ const PingsSection = [
                 .setStyle(ButtonStyle.Primary)
                 .setCustomId('raffles_role')
         ),
+    // new SectionBuilder()
+    //     .addTextDisplayComponents(new TextDisplayBuilder().setContent(`🎰 - <@&${roleIDs.gamblers_role}>`))
+    //     .setButtonAccessory(
+    //         new ButtonBuilder()
+    //             .setLabel('Get')
+    //             .setStyle(ButtonStyle.Primary)
+    //             .setCustomId('gamblers_role')
+    //     ),
     new SectionBuilder()
-        .addTextDisplayComponents(new TextDisplayBuilder().setContent(`🎰 - <@&${roleIDs.gamblers_role}>`))
+        .addTextDisplayComponents(new TextDisplayBuilder().setContent(`🎋 - <@&${roleIDs.movie_game_role}>`))
         .setButtonAccessory(
             new ButtonBuilder()
                 .setLabel('Get')
                 .setStyle(ButtonStyle.Primary)
-                .setCustomId('gamblers_role')
+                .setCustomId('movie_game_role')
+        ),
+    new SectionBuilder()
+        .addTextDisplayComponents(new TextDisplayBuilder().setContent(`⚔️ - <@&${roleIDs.PvP_role}>`))
+        .setButtonAccessory(
+            new ButtonBuilder()
+                .setLabel('Get')
+                .setStyle(ButtonStyle.Primary)
+                .setCustomId('PvP_role')
         ),
 ];
 
