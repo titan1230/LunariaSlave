@@ -7,7 +7,7 @@ module.exports = {
      * @param {string[]} args 
      */
     async execute(client, message, args) {
-        const sent = await message.reply("Set you AFK status.").catch(() => { });
+        const sent = await message.reply("Marked you as AFK.").catch(() => { });
 
         const reason = args.join(" ") || "AFK";
 

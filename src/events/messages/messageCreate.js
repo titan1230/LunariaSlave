@@ -18,7 +18,6 @@ module.exports = {
 
         const command = client.messageCommands.get(commandName) || client.messageCommands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-        console.log(command)
         if (!command) return;
 
         try {
