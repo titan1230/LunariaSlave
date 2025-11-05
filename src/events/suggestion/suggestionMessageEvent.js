@@ -10,6 +10,7 @@ module.exports = {
      */
     async execute(client, message) {
         if (message.author.bot || !message.guild) return;
+        if(client.suggestionChannel == null) return;
         if (client.suggestionChannel && message.channel.id !== client.suggestionChannel.id) return;
 
         const ApprovalEmbed = new EmbedBuilder()
