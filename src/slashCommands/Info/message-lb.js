@@ -18,11 +18,13 @@ module.exports = {
             .setColor(0x00AE86)
             .setTimestamp();
 
+        let description = '';
+
         msgs.forEach((msg, index) => {
-            embed.addFields(
-                { name: `#${index + 1} <@${msg.userID}>`, value: `${msg.count} messages`, inline: false },
-            );
+            description += `${index + 1} <@${msg.userID}>: ${msg.count} messages\n`;
         });
+
+        embed.setDescription(description);
 
         return interaction.editReply({ embeds: [embed] });
     },
