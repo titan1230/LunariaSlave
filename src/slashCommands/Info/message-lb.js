@@ -3,7 +3,16 @@ const { SlashCommandBuilder, PermissionsBitField, EmbedBuilder, MessageFlags } =
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('message-lb')
-        .setDescription('Get the leaderboard of users with the most messages'),
+        .addStringOption(option =>
+            option.setName('limit')
+                .setDescription('Number of top users to display (default 5)')
+                .addChoices(
+                    { name: '5', value: '5' },
+                    { name: '10', value: '10' },
+                    { name: '15', value: '15' },
+                ).setRequired(false)
+        )
+        .setDescription('Displays the message leaderboard.'),
     /**
      * @param {import('discord.js').Client} client 
      * @param {import('discord.js').CommandInteraction} interaction 
@@ -11,7 +20,9 @@ module.exports = {
     run: async (client, interaction) => {
         await interaction.deferReply();
 
-        const msgs = await client.db.prepare(`SELECT * FROM msg ORDER BY count DESC LIMIT 5`).all();
+
+        const limit = interaction.options.getString('limit') || '5';
+        const msgs = await client.db.prepare(`SELECT * FROM msg ORDER BY count DESC LIMIT ${limit}`).all();
 
         const embed = new EmbedBuilder()
             .setTitle('📊 Message Leaderboard')
