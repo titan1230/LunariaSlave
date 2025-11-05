@@ -20,7 +20,7 @@ module.exports = {
 
         msgs.forEach((msg, index) => {
             embed.addFields(
-                { name: `#${index + 1} ${msg.userID}`, value: `${msg.count} messages`, inline: true },
+                { name: `#${index + 1} <@${msg.userID}>`, value: `${msg.count} messages`, inline: false },
             );
         });
 
