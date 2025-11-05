@@ -38,19 +38,21 @@ if (!process.env.TOKEN) {
 }
 
 // Collections
-client.commands = new Collection();
+client.messageCommands = new Collection();
 client.events = new Collection();
 client.slash = new Collection();
 client.cooldown = new Collection();
 client.aliases = new Collection();
 client.levelingCooldown = new Collection();
+client.afk = new Collection();
 client.db = db;
+client.prefix = process.env.PREFIX || '..';
 
 // Attach ClusterClient
 client.cluster = new ClusterClient(client);
 
 // Load event and slash handlers AFTER client is exported
-["event", "slash"].forEach(file => require(`./handlers/${file}`)(client));
+["event", "slash", "command"].forEach(file => require(`./handlers/${file}`)(client));
 
 // Login
 client.login(process.env.TOKEN)

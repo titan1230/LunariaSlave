@@ -10,29 +10,22 @@ module.exports = {
      */
     async execute(client, message) {
         if (message.author.bot || !message.inGuild()) return;
+        if (!message.content.startsWith(client.prefix)) return;
 
-        const blacklistChannel = []
-        const blackListCategory = ['1412157250012840068']
 
-        if (blacklistChannel.includes(message.channelId)) return;
-        if (message.channel.parentId && blackListCategory.includes(message.channel.parentId)) return;
+        const args = message.content.slice(client.prefix.length).trim().split(/ +/);
+        const commandName = args.shift().toLowerCase();
 
-        const cooldown = client.levelingCooldown.get(message.author.id);
+        const command = client.messageCommands.get(commandName) || client.messageCommands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-        if (cooldown) {
-            if (Date.now() < cooldown) return;
-        }
-
-        const cd = Math.floor(Math.random() * (5000 - 3000 + 1) + 3000);
-
-        client.levelingCooldown.set(message.author.id, Date.now() + cd);
+        console.log(command)
+        if (!command) return;
 
         try {
-            await client.db.prepare(`INSERT INTO msg (userID, count) VALUES (?, 1) ON CONFLICT(userID) DO UPDATE SET count = count + 1`).run(message.author.id);
-        } catch { }
-
-        setTimeout(() => {
-            client.levelingCooldown.delete(message.author.id);
-        }, cd);
+            await command.execute(client, message, args);
+        } catch (error) {
+            console.error("[COMMAND ERROR]", error);
+            await message.reply("There was an error while executing the command.");
+        }
     }
 }
