@@ -1,3 +1,4 @@
+const { Colors } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
@@ -21,7 +22,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle(`Warnings for ${user.user.tag}`)
-            .setColor("YELLOW")
+            .setColor(Colors.Yellow)
             .setTimestamp();
 
         for (let i = 0; i < Math.min(data.length, 25); i++) {
