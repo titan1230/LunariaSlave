@@ -1,4 +1,4 @@
-const { PermissionFlagsBits } = require('discord.js');
+const { v4 } = require("uuid");
 
 module.exports = {
     name: "warn",
@@ -14,19 +14,28 @@ module.exports = {
         }
 
         if (!args[1]) return message.reply("Please mention a user to warn.");
-        
+
         const user = message.mentions.members?.first() || await message.guild?.members.fetch(args[1]).catch(() => null);
         if (!user) return message.reply("Please mention a user to warn.");
 
-        // const userId = message.mentions.users.first()?.id || args[0];
+        if (user.user.bot) return message.reply("I don't warn my own kind, uwu~");
 
-        // if (!userId) {
-        //     return message.reply("Please mention a user or provide their ID to warn.");
-        // }
+        const userId = message.mentions.users.first()?.id || args[0];
 
-        // const reason = args.slice(1).join(" ") || "No reason provided";
-        // const warnTime = Math.floor(new Date().getTime() / 1000);
+        if (!userId) {
+            return message.reply("Please mention a user or provide their ID to warn.");
+        }
 
-        // client.db.exec("INSERT INTO warns (user_id, mod_id, reason, timestamp) VALUES (?, ?, ?, ?)", [userId, message.author.id, reason, warnTime]);
+        if (userId === process.env.CLIENTID) return message.reply("Are you a fucking idiot?, uwu~");
+        if (userId === "462203190298017793") return message.reply("I don't betray my master, uwu~");
+        if (userId === message.author.id) return message.reply("You can't warn yourself...");
+
+        const reason = args.slice(1).join(" ") || "No reason provided";
+        const warnTime = Math.floor(new Date().getTime() / 1000);
+        const warnID = Math.random().toString(36).slice(2);
+
+        await message.reply(`User <@${userId}> has been warned for: ${reason}`);
+
+        client.db.prepare("INSERT INTO warns (warn_id, user_id, mod_id, reason, timestamp) VALUES (?, ?, ?, ?, ?)").run(warnID, userId, message.author.id, reason, warnTime);
     }
 }

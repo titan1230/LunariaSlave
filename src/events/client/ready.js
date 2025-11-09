@@ -37,6 +37,7 @@ module.exports = {
         try {
             client.db.exec("CREATE TABLE IF NOT EXISTS serverChannels (id INTEGER PRIMARY KEY default 1,suggestionChannel varchar(255), loggingChannel varchar(255), suggestionApprovalChannel varchar(255))");
             client.db.exec("CREATE TABLE IF NOT EXISTS userLuck (userID varchar(255) PRIMARY KEY, luck INT default 0)");
+            client.db.exec("CREATE TABLE IF NOT EXISTS warns (warn_id varchar(255) PRIMARY KEY, user_id varchar(255), mod_id varchar(255), reason TEXT, timestamp INT)");
             client.db.exec("CREATE TABLE IF NOT EXISTS msg (userID varchar(255) PRIMARY KEY, count INT default 0)");
             client.db.exec("CREATE TABLE IF NOT EXISTS crons (userID varchar(255) PRIMARY KEY, hours INT default 0, minutes INT default 0, message TEXT)");
         } catch (err) {
