@@ -28,8 +28,6 @@ module.exports = {
             }],
         });
 
-        client.riffy.init(process.env.CLIENTID);
-
         client.expressApp.listen("20101", () => {
             console.log("Express Backend Started!")
         })

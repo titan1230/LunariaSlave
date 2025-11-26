@@ -62,7 +62,6 @@ client.login(process.env.TOKEN)
         process.exit();
     });
 
-require('./clients/riffy')(client);
 require('./clients/express')(client);
 
 // Global error handling
